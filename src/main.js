@@ -69,8 +69,8 @@ class CommApp extends React.Component {
 
       messages.push({
         id: testId + 1,
-        author: this.state.newAuthor,
-        text: this.state.newText,
+        author: this.state.newAuthor.replace(/<[^>]+>/g, ''),
+        text: this.state.newText.replace(/<[^>]+>/g, ''),
         date: now
       });
 
@@ -79,9 +79,9 @@ class CommApp extends React.Component {
         newAuthor: '',
         newText: '',
         errorText: ''
-      })
+      }, () => {localStorage.setItem('state', JSON.stringify(this.state))})
+;
 
-      localStorage.setItem('state', JSON.stringify(this.state));
     }
     else {
       this.setState({
@@ -90,6 +90,7 @@ class CommApp extends React.Component {
 
       localStorage.setItem('state', JSON.stringify(this.state));
     }
+
   }
 
 
@@ -97,7 +98,10 @@ class CommApp extends React.Component {
     return (
       <div>
       <h2>А какие вопросы Вы получали на собеседовании?</h2>
-      <img src="https://i2.wp.com/bosshunt.ru/wp-content/uploads/2019/02/%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.jpg?w=855&ssl=1" />
+      <img
+        src="https://i2.wp.com/bosshunt.ru/wp-content/uploads/2019/02/%D0%BF%D0%B5%D1%80%D0%B2%D0%BE%D0%B5-%D1%81%D0%BE%D0%B1%D0%B5%D1%81%D0%B5%D0%B4%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.jpg?w=855&ssl=1"
+        onClick={() => localStorage.clear()}
+      />
 
 
       <div>
