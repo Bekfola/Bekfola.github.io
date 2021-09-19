@@ -112,3 +112,6 @@ p {
 .visible {
   display: none;
 }
+img {
+  cursor: pointer;
+}
